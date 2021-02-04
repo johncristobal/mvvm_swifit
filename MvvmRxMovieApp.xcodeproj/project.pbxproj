@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C049D9B425CC4C300082B33A /* MovieCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C049D9B225CC4C300082B33A /* MovieCellTableViewCell.swift */; };
 		C049D9B525CC4C300082B33A /* MovieCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C049D9B325CC4C300082B33A /* MovieCellTableViewCell.xib */; };
+		C0AE566825CC91100048B0D4 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AE566725CC91100048B0D4 /* UIImageView+Extension.swift */; };
 		F0EDE9155A8DDBCAD13CB477 /* Pods_MvvmRxMovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8631898CACDE33AC059713 /* Pods_MvvmRxMovieApp.framework */; };
 		FA1E344F25CADE490007FA88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E344E25CADE490007FA88 /* AppDelegate.swift */; };
 		FA1E345125CADE490007FA88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E345025CADE490007FA88 /* SceneDelegate.swift */; };
@@ -29,6 +30,7 @@
 		A8630C94B90150A3A67C61D9 /* Pods-MvvmRxMovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MvvmRxMovieApp.debug.xcconfig"; path = "Target Support Files/Pods-MvvmRxMovieApp/Pods-MvvmRxMovieApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C049D9B225CC4C300082B33A /* MovieCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellTableViewCell.swift; sourceTree = "<group>"; };
 		C049D9B325CC4C300082B33A /* MovieCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCellTableViewCell.xib; sourceTree = "<group>"; };
+		C0AE566725CC91100048B0D4 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		FA1E344B25CADE490007FA88 /* MvvmRxMovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MvvmRxMovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1E344E25CADE490007FA88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA1E345025CADE490007FA88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,14 @@
 				6643FC164E8691AD40764EC4 /* Pods-MvvmRxMovieApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C0AE566625CC90E50048B0D4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C0AE566725CC91100048B0D4 /* UIImageView+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E21187D381A8A9170711C707 /* Frameworks */ = {
@@ -163,6 +173,7 @@
 		FA1E347825CB05A50007FA88 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C0AE566625CC90E50048B0D4 /* Extensions */,
 				FA1E347925CB05C10007FA88 /* Constants.swift */,
 			);
 			path = Common;
@@ -291,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0AE566825CC91100048B0D4 /* UIImageView+Extension.swift in Sources */,
 				FA1E346825CAE0FA0007FA88 /* HomeView.swift in Sources */,
 				FA1E346F25CAE2250007FA88 /* HomeRouter.swift in Sources */,
 				FA1E348D25CBA95E0007FA88 /* Movies.swift in Sources */,

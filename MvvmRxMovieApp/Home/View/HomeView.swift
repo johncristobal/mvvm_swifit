@@ -33,6 +33,7 @@ class HomeView: UIViewController {
     
     func setupTable(){
         self.tableview.rowHeight = UITableView.automaticDimension
+        self.tableview.estimatedRowHeight = 200.0
         self.tableview.register(UINib(nibName: "MovieCellTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MovieCellTableViewCell")
     }
     
@@ -74,6 +75,8 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
 
         cell.titleMovie.text = movies[indexPath.row].originalTitle
         cell.descriptionMovie.text = movies[indexPath.row].overview
+
+        cell.imageView?.imageFromServer(urlString: "\(Constants.Url.urlImages)"+"\(movies[indexPath.row].posterPath)", placeHolder: UIImage(named: "claqueta")!)
         
         return cell
     }
