@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,8 @@
 		FA1E346F25CAE2250007FA88 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E346E25CAE2250007FA88 /* HomeRouter.swift */; };
 		FA1E347525CAE3C00007FA88 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E347425CAE3C00007FA88 /* HomeViewModel.swift */; };
 		FA1E347A25CB05C10007FA88 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E347925CB05C10007FA88 /* Constants.swift */; };
+		FA1E348925CBA8AC0007FA88 /* Connections.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E348825CBA8AC0007FA88 /* Connections.swift */; };
+		FA1E348D25CBA95E0007FA88 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E348C25CBA95E0007FA88 /* Movies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		FA1E346E25CAE2250007FA88 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		FA1E347425CAE3C00007FA88 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		FA1E347925CB05C10007FA88 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FA1E348825CBA8AC0007FA88 /* Connections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connections.swift; sourceTree = "<group>"; };
+		FA1E348C25CBA95E0007FA88 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +58,6 @@
 				A8630C94B90150A3A67C61D9 /* Pods-MvvmRxMovieApp.debug.xcconfig */,
 				6643FC164E8691AD40764EC4 /* Pods-MvvmRxMovieApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -89,6 +92,7 @@
 			children = (
 				FA1E344E25CADE490007FA88 /* AppDelegate.swift */,
 				FA1E345025CADE490007FA88 /* SceneDelegate.swift */,
+				FA1E348725CBA88B0007FA88 /* NetworkManager */,
 				FA1E347825CB05A50007FA88 /* Common */,
 				FA1E346425CADE900007FA88 /* DetailView */,
 				FA1E346325CADE880007FA88 /* Home */,
@@ -145,6 +149,7 @@
 		FA1E347325CAE38D0007FA88 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FA1E348C25CBA95E0007FA88 /* Movies.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -155,6 +160,14 @@
 				FA1E347925CB05C10007FA88 /* Constants.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		FA1E348725CBA88B0007FA88 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				FA1E348825CBA8AC0007FA88 /* Connections.swift */,
+			);
+			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +286,8 @@
 			files = (
 				FA1E346825CAE0FA0007FA88 /* HomeView.swift in Sources */,
 				FA1E346F25CAE2250007FA88 /* HomeRouter.swift in Sources */,
+				FA1E348D25CBA95E0007FA88 /* Movies.swift in Sources */,
+				FA1E348925CBA8AC0007FA88 /* Connections.swift in Sources */,
 				FA1E344F25CADE490007FA88 /* AppDelegate.swift in Sources */,
 				FA1E347525CAE3C00007FA88 /* HomeViewModel.swift in Sources */,
 				FA1E345125CADE490007FA88 /* SceneDelegate.swift in Sources */,
