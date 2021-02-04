@@ -13,8 +13,12 @@ class Connections {
     func getPopularMovies() -> Observable<[Result]> {
         
         return Observable.create { observer in
+            //con la variable observer lanzamos el dato con onnext/onerror
+            //terminamos con oncompleted
+            
+            //hacemos llamada con urlsession
             let session = URLSession.shared
-            var request = URLRequest(url: URL(string: Constants.Url.main+Constants.Endpoints.urlListPopularMovies)!)
+            var request = URLRequest(url: URL(string: Constants.Url.main+Constants.Endpoints.urlListPopularMovies+Constants.apikey)!)
             
             request.httpMethod = "GET"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -29,16 +33,16 @@ class Connections {
                         observer.onNext(movies.results)
                     }catch let error{
                         observer.onError(error)
-                        print("url desconicod \(error.localizedDescription)")
+                        print("error: \(error.localizedDescription)")
                     }
                 }else if response.statusCode == 401 {
                     print("error 401")
                 }
                 
                 observer.onCompleted()
-            }.resume()
+            }.resume()  //ojo, linea importante para llamar task url
             
-            //finaliza session
+            //finaliza session task
             return Disposables.create{
                 session.finishTasksAndInvalidate()
             }

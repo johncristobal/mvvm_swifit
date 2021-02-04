@@ -28,7 +28,6 @@ struct Result: Codable {
     let voteCount: Int
     let voteAverage: Double
     let overview, releaseDate: String
-
     let posterPath: String
     let adult: Bool
     let genreIDS: [Int]
@@ -37,23 +36,24 @@ struct Result: Codable {
     let video: Bool
     
     enum CodingKeys: String, CodingKey {
-        case title
+        case adult
         case backdropPath = "backdrop_path"
-        case popularity
-        case id
-        case voteCount = "vote_count"
-        case voteAverage = "vote_average"
-        case adult, overview
-        case releaseDate = "release_date"
-
-        case posterPath = "poster_path"
         case genreIDS = "genre_ids"
-        case originalTitle = "original_title"
+        case id
         case originalLanguage = "original_language"
-        case video
+        case originalTitle = "original_title"
+        case overview, popularity
+        case posterPath = "poster_path"
+        case releaseDate = "release_date"
+        case title, video
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
     }
 }
 
 enum OriginalLanguage: String, Codable {
     case en = "en"
+    case fr = "fr"
+    case ko = "ko"
+    case zh = "zh"
 }
