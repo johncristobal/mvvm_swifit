@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeView" customModule="MvvmRxMovieApp" customModuleProvider="target">
             <connections>
+                <outlet property="loading" destination="Ci1-uh-6tW" id="bXk-8S-t0x"/>
+                <outlet property="tableview" destination="9w9-8W-AFK" id="dmu-7y-p9E"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,17 +20,26 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4R-sq-D63">
-                    <rect key="frame" x="186" y="170" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9w9-8W-AFK">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ci1-uh-6tW">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                    <color key="color" red="0.87450980389999999" green="0.33725490200000002" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="139" y="96"/>
+            <constraints>
+                <constraint firstItem="Ci1-uh-6tW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3kK-P1-xso"/>
+                <constraint firstItem="9w9-8W-AFK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="P73-VS-WtI"/>
+                <constraint firstItem="Ci1-uh-6tW" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="WNY-RQ-d5U"/>
+                <constraint firstItem="9w9-8W-AFK" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="dM3-9P-9us"/>
+                <constraint firstItem="9w9-8W-AFK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kGf-gL-YKd"/>
+                <constraint firstItem="9w9-8W-AFK" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="ucK-Az-CcK"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
         </view>
     </objects>
     <resources>
