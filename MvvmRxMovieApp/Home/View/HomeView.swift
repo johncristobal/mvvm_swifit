@@ -28,6 +28,12 @@ class HomeView: UIViewController {
         
         //cuando se abra la vista, obtiene datos
         getData()
+        setupTable()
+    }
+    
+    func setupTable(){
+        self.tableview.rowHeight = UITableView.automaticDimension
+        self.tableview.register(UINib(nibName: "MovieCellTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MovieCellTableViewCell")
     }
     
     func getData(){
@@ -64,8 +70,15 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-        cell.textLabel?.text = movies[indexPath.row].originalTitle
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCellTableViewCell") as! MovieCellTableViewCell
+
+        cell.titleMovie.text = movies[indexPath.row].originalTitle
+        cell.descriptionMovie.text = movies[indexPath.row].overview
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200.0
     }
 }
