@@ -1,24 +1,30 @@
 //
-//  HomeRouter.swift
+//  DetailRouter.swift
 //  MvvmRxMovieApp
 //
-//  Created by MACBOOK on 03/02/21.
+//  Created by John Alexis Cristobal Jimenez  on 05/02/21.
 //
 
 import Foundation
 import UIKit
 
-class HomeRouter {
+class DetailRouter {
     
     var viewController : UIViewController{
         //return viewcontroller
         return createViewController()
     }
     
+    var movidId: String?
     private var sourceView: UIViewController?
     
+    init(movieId: String? = "") {
+        self.movidId = movieId
+    }
+ 
     func createViewController () -> UIViewController {
-        let view = HomeView(nibName: "HomeView", bundle: Bundle.main)
+        let view = DetailViewViewController(nibName: "DetailViewViewController", bundle: Bundle.main)
+        view.movieId = self.movidId
         return view
     }
     
@@ -28,10 +34,5 @@ class HomeRouter {
         }
         
         self.sourceView = view
-    }
-    
-    func navigateDetailView(movieId: String){
-        let detalView = DetailRouter(movieId: movieId).viewController        
-        self.sourceView?.navigationController?.pushViewController(detalView, animated: true)
     }
 }

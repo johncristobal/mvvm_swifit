@@ -49,9 +49,42 @@ class Connections {
         }
     }
     
-    func getDetailMovies(){
+    func getDetailMovie(id: String) -> Observable<MovieDetail> {
         
+        return Observable.create { observer in
+            //con la variable observer lanzamos el dato con onnext/onerror
+            //terminamos con oncompleted
+            
+            //hacemos llamada con urlsession
+            let session = URLSession.shared
+            var request = URLRequest(url: URL(string: Constants.Url.main+Constants.Endpoints.urlDetailMovie+"/\(id)"+Constants.apikey)!)
+            
+            request.httpMethod = "GET"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            session.dataTask(with: request) { (data, response, error) in
+                guard let data = data, error == nil, let response = response as? HTTPURLResponse else { return }
+                
+                if response.statusCode == 200{
+                    do{
+                        let decoder = JSONDecoder()
+                        let movie = try decoder.decode(MovieDetail.self, from: data)
+                        observer.onNext(movie)
+                    }catch let error{
+                        observer.onError(error)
+                        print("error: \(error.localizedDescription)")
+                    }
+                }else if response.statusCode == 401 {
+                    print("error 401")
+                }
+                
+                observer.onCompleted()
+            }.resume()  //ojo, linea importante para llamar task url
+            
+            //finaliza session task
+            return Disposables.create{
+                session.finishTasksAndInvalidate()
+            }
+        }
     }
-    
-    
 }

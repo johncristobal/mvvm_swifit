@@ -37,7 +37,7 @@ class HomeView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // enlzamoas viewmodel con la vista
         viewModel.bind(view: self, router: route)
         
         //cuando se abra la vista, obtiene datos
@@ -124,8 +124,17 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
 
             cell.imageMovie?.imageFromServer(urlString: "\(Constants.Url.urlImages)"+"\(movies[indexPath.row].posterPath)", placeHolder: UIImage(named: "claqueta")!)
         }
-                
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if sharedController.isActive && sharedController.searchBar.text != ""{
+            let id = filteredmovies[indexPath.row].id
+            viewModel.toDetailView(movieId: "\(id)")
+        }else{
+            let id = movies[indexPath.row].id
+            viewModel.toDetailView(movieId: "\(id)")
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

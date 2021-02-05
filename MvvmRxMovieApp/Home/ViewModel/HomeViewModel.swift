@@ -27,5 +27,9 @@ class HomeViewModel {
         //la capa de conexion ya regresa un observable
         return managerConnection.getPopularMovies()
     }
+    
+    func toDetailView(movieId: String){
+        router?.navigateDetailView(movieId: movieId)
+    }
 
 }
