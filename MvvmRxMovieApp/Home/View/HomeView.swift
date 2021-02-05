@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class HomeView: UIViewController {
 
@@ -19,6 +20,19 @@ class HomeView: UIViewController {
     @IBOutlet weak var loading: UIActivityIndicatorView!
     
     private var movies:[Result] = []
+    private var filteredmovies:[Result] = []
+    
+    lazy var sharedController: UISearchController = ({
+        let controller = UISearchController(searchResultsController: nil)
+        controller.hidesNavigationBarDuringPresentation = true
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.searchBar.sizeToFit()
+        controller.searchBar.barStyle = .black
+        controller.searchBar.backgroundColor = .clear
+        controller.searchBar.placeholder = "Buscar pelicula"
+        
+        return controller
+    })()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +43,7 @@ class HomeView: UIViewController {
         //cuando se abra la vista, obtiene datos
         getData()
         setupTable()
+        mangeSearchBarController()
     }
     
     func setupTable(){
@@ -62,26 +77,66 @@ class HomeView: UIViewController {
             self.tableview.reloadData()
         }
     }
+    
+    private func mangeSearchBarController(){
+        let searchBar = sharedController.searchBar
+        sharedController.delegate = self
+        self.tableview.tableHeaderView = searchBar
+        self.tableview.contentOffset = CGPoint(x: 0, y: searchBar.frame.size.height)
+        
+        //filstramos datos de la tabla con rxswift
+        searchBar.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .subscribe (onNext: { (result) in
+                //se introduce texto, y se filtra el listado de peliculas
+                self.filteredmovies = self.movies.filter({ (movie) -> Bool in
+                    self.reloadTableData()
+                    return movie.title.contains(result)
+                })
+            }).disposed(by: disposeBag)
+
+    }
 }
 
 extension HomeView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        
+        if sharedController.isActive && sharedController.searchBar.text != ""{
+            return filteredmovies.count
+        } else{
+            return movies.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCellTableViewCell") as! MovieCellTableViewCell
 
-        cell.titleMovie.text = movies[indexPath.row].originalTitle
-        cell.descriptionMovie.text = movies[indexPath.row].overview
+        if sharedController.isActive && sharedController.searchBar.text != ""{
+            cell.titleMovie.text = filteredmovies[indexPath.row].originalTitle
+            cell.descriptionMovie.text = filteredmovies[indexPath.row].overview
 
-        cell.imageView?.imageFromServer(urlString: "\(Constants.Url.urlImages)"+"\(movies[indexPath.row].posterPath)", placeHolder: UIImage(named: "claqueta")!)
-        
+            cell.imageMovie?.imageFromServer(urlString: "\(Constants.Url.urlImages)"+"\(filteredmovies[indexPath.row].posterPath)", placeHolder: UIImage(named: "claqueta")!)
+        }else{
+            cell.titleMovie.text = movies[indexPath.row].originalTitle
+            cell.descriptionMovie.text = movies[indexPath.row].overview
+
+            cell.imageMovie?.imageFromServer(urlString: "\(Constants.Url.urlImages)"+"\(movies[indexPath.row].posterPath)", placeHolder: UIImage(named: "claqueta")!)
+        }
+                
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200.0
+    }
+}
+
+extension HomeView: UISearchControllerDelegate{
+    
+    func searchBarCancelButtonlicked(_ searchBar: UISearchBar){
+        sharedController.isActive = false
+        reloadTableData()
     }
 }
